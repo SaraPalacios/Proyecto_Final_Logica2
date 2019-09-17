@@ -19,7 +19,7 @@ def val(f,L):
         return "Formula insatisfacible"
     elif 0 not in auxi:
         return "Formula valida"
-    elif 1 or 0 in auxi:
+    elif 1 and 0 in auxi:
         return "Formula contingente"
 
 
