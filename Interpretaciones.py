@@ -17,8 +17,8 @@ for a in letrasProp:
                 aux1[b] = i[b] #mantiene el valor de verdad para las demas
         interps.append(aux1)
 
-
-print("Interpretaciones: ")
-for i in interps:
-    print(i)
+if __name__ == "__main__":
+    print("Interpretaciones: ")
+        for i in interps:
+            print(i)
 
