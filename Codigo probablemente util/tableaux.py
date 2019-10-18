@@ -5,6 +5,7 @@ class Tree(object):
     self.label=lb
 
 def Par_Complementario(h):
+
     #Retorna true si existe un par complementario
     negs= []
     nonegs=[]
@@ -20,6 +21,7 @@ def Par_Complementario(h):
             return True
         else:
             return False
+
 def LiteralF(A):
     #Dado una formula A, retorna True si A es un literal
     if A.right==None:
@@ -79,16 +81,94 @@ def Marcar(Lista):
             del Lista[0]
             return Marcar(Lista)
 
+def Sin_Par_Complementario(Lista, pack):
+    for formula in Lista:
+        if Par_Complementario(formula)==False:
+                pack.append(formula)
+    return pack
+
+def Clasificacion(A):
+    if A.label == "-":
+        if A.right.label == "-":
+            return "1 Alfa"
+        elif A.right.label == "O":
+            return "3 Alfa"
+        elif A.right.label == ">":
+            return "4 Alfa"
+        elif A.right.label == "Y":
+            return "1 Beta"
+    else:
+        if A.label == "Y":
+            return "2 Alfa"
+        elif A.label == "O":
+            return "2 Beta"
+        elif A.label == ">":
+            return "3 Beta"
+        
+def ejecutar(Lista, pack):
+    while len(Lista)>0:
+        for h in Lista:
+            if not LiteralL(h):
+                for formula in h:
+                    if not LiteralF(formula):
+                        if Clasificacion(formula) == "1 Alfa":
+                            h.append([formula.right.right])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "2 Alfa":
+                            h.append([formula.right, formula.left])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "3 Alfa":
+                            h.append([Tree('-', None, formula.left),Tree('-', None, formula.right)])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "4 Alfa":
+                            h.append([formula.left, Tree('-', None, formula.right)])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "1 Beta":
+                            h.append([Tree('-', None, formula.left)])
+                            h.append([Tree('-', None, formula.right)])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "2 Beta":
+                            h.append([formula.left])
+                            h.append([formula.right])
+                            h.remove(formula)
+                        elif Clasificacion(formula) == "3 Beta":
+                            h.append([Tree('-', None, formula.left)])
+                            h.append([formula.right])
+            else: 
+                Sin_Par_Complementario(h, pack)
+                Lista.remove(h)
 
 
 
+
+
+listainterpsverdaderas=[]
 
 p = Tree("p", None, None)
 nop = Tree("-", None, p)
 nonop = Tree("-", None, nop)
 q = Tree("q", None, None)
 noq = Tree("-", None, q)
-A0=Tree("Y", p, noq)
-A = Tree("-", None,A0)
-Marcar([[q], [nop, q], [q, noq], [p, nop]])
+r = Tree("r", None, None)
+nor = Tree("-", None, r)
+s = Tree("s", None, None)
+nos = Tree("-", None, s)
+A0=Tree("O", p, q)
+noA0 = Tree("-", None, A0)
+A1 = Tree(">", r,s)
+noA1 = Tree("-", None, A1)
+A2 = Tree("Y",noA0, noA1)
+noA2 = Tree("-", None, A2)
+nonoA2 = Tree("-", None, noA2)
+A3 = Tree("O", noA1, q)
+noA3 = Tree("-", None, A3)
+A4 = Tree(">", r, noA0)
+noA4 = Tree("-", None, A4)
+a5 = Tree("O", s, q)
+A5 = Tree(">", r, a5)
+#Marcar([[q], [nop, q], [q, noq], [p, nop]])
 #print(LiteralL([nonop, q]))
+#sin = Sin_Par_Complementario([[p, q], [nop,p]])
+#for hoja in sin:
+#    print(imprime_hoja(hoja))
+ejecutar([[q],[A0]], listainterpsverdaderas)

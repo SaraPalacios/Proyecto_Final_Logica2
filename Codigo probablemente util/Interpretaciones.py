@@ -1,4 +1,6 @@
-letrasProp = ['p', 'q', 'r']
+letrasProp = ["NAY", "E-B-Y", "A-E-Y", "A-SY", "S-NY", "N-S-CYY",
+                "CLY", "BEY", "SMY", "A", "APJYY", "PC-B-MYYY", "HKBYY", 
+                "S-E-L-M-F-DYYYYY", "N-LCMYYY", "BGY"]
 interps = []
 aux = {}
 for a in letrasProp:
