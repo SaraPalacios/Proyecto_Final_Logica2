@@ -1,0 +1,400 @@
+% Modelo de slides para projetos de disciplinas do Abel
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{plainnat}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage{wrapfig}
+
+
+\title{The Blacklist}
+% \subtitle{Subtítulo}
+% \date{\today}
+\date{lógica para Ciencias de la Computación}
+\author{Sara Palacios, María José Chavarro, Juan Sebastián Caballero }
+\institute{Universidad del Rosario}
+
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Contenido}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Planteamiento del Problema}
+
+\begin{frame}[fragile]{Planteamiento del Problema}
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\centering
+	\includegraphics[width=0.3\textwidth]{bl.jpg}		
+\end{wrapfigure}
+    
+    El director de estudios de un Instituto de Matemáticas Aplicadas quiere tratar de establecer una lista negra con los nombres de los alumnos que faltan a los cursos.
+    
+    Siendo el asunto arbitario, todo será basado en un solo y mismo curso.
+    
+    Esto se quiere solucionar, por medio de las afirmaciones de los estudiantes y del profesor.
+
+ 
+\end{frame}
+
+\section{Condiciones Iniciales / Reglas }
+\begin{frame}[fragile]{Condiciones Iniciales / Reglas}
+    Los personajes involucrados son 15 estudiantes y un profesor:
+    \begin{itemize}
+        \item Archiduc, Jhon, Gabriel, Don, Hugo, Patrick ,Fer, Kevin, Megan, Nicolas, Lauren, Bill, Emma, Sahara, Charlie y el Profesor Laclinique.   
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Condiciones Iniciales / Reglas}
+    Las afirmaciones que nos proporcionan son: 
+    \begin{enumerate}
+        \item Archiduc y Nicolas dicen: \textquotedblleft No falté al curso\textquotedblright.
+        \item Bill dice: \textquotedblleft Falté al curso con Emma".
+        \item Emma dice: \textquotedblleft Yo no falté con Bill sino con Archiduc".
+        \item Sahara dice: \textquotedblleft No vi a Archiduc en el curso al que asistí".
+        \item Nicolas dice: \textquotedblleft No vi a Sahara en el curso".
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Condiciones Iniciales / Reglas}
+    \begin{enumerate}
+    \setcounter{enumi}{5}
+        \item Charlie dice: \textquotedblleft Ni Sahara ni Nicolas estaban en el curso".
+        \item Lauren dice: \textquotedblleft Estuve en el curso con Charlie".
+        \item Emma dice: \textquotedblleft El profesor le preguntó a Bill en clase".
+        \item Megan dice: \textquotedblleft Trabajé con Sahara en el curso".
+        \item El profesor Laclinique dice: \textquotedblleft Vi a Archiduc en el curso" .
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Condiciones Iniciales / Reglas}
+    \begin{enumerate}
+    \setcounter{enumi}{10}
+        \item Jhon dice: \textquotedblleft Patrick, Archiduc y yo estabamos juntos en el curso".
+        \item Megan dice: \textquotedblleft No vi a Bill ni a Charlie, pero si vi a Patrick".
+        \item Bill y Kevin dicen: \textquotedblleft Nosotros vimos a Hugo en el curso".
+        \item Don dice: \textquotedblleft No vi a ninguna chica en el curso".
+        \item Megan dice: \textquotedblleft Hablé en clase con Charlie y Lauren, pero no pude con Nicolas porque no fue".
+        \item Gabriel dice: "Yo fui al curso y vi a Bill tambien"
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Condiciones Iniciales / Reglas}
+    \begin{itemize}
+        \item Luego de todas las afirmaciones anteriores se supone que seis deben ser verdaderas para solucionar el problema, el cual consiste en dar una lista de los estudiantes que faltaron al curso.
+        \item Ahí se evidencia que el problema computacional se basa en buscar si existen esas seis afirmaciones y cuales son. 
+    \end{itemize}
+\end{frame}
+
+\section{Planteamiento en Letras Proposicionales}
+
+\begin{frame}[fragile]{Planteamiento en Letras Proposicionales}
+    Asignando letras proposiconales a cada personaje tenemos que: 
+    \begin{itemize}
+    \begin{multicols}{2}
+        \item Archiduc = A 
+        \item Bill = B 
+        \item Charlie = C 
+        \item Don = D
+        \item Emma = E 
+        \item Fer = F
+        \item Gabriel = G
+        \item Hugo = H 
+        \item Jhon = J 
+        \item Kevin = K 
+        \item Lauren = L
+        \item Megan = M 
+        \item Nicolas = N 
+        \item Patrick = P
+        \item Sahara = S 
+    \end{multicols}
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Planteamiento en Letras Proposicionales}
+    Ahora, las afirmaciones en lenguaje Lógico serían: 
+    \begin{itemize}
+        \item Archiduc y Nicolas dicen: \textquotedblleft No falté al curso".
+        \begin{itemize}
+        	\item [$\checkmark$]  $ A \land N $ 
+        \end{itemize}    
+        \item Bill dice: \textquotedblleft Falté al curso con Emma".
+        \begin{itemize}
+        	\item [$\checkmark$] $ \neg B \land \neg E $ 
+        \end{itemize}
+        \item Emma dice: \textquotedblleft Yo no falté con Bill sino con Archiduc".
+        \begin{itemize}
+        	\item [$\checkmark$]  $ \neg E \land \neg A $ 
+        \end{itemize}
+        \item Sahara dice: \textquotedblleft No vi a Archiduc en el curso al que asistí".
+        \begin{itemize}
+        	\item [$\checkmark$]  $ S \land \neg A $ 
+        \end{itemize}
+        \item Nicolas dice: \textquotedblleft No vi a Sahara en el curso".
+        \begin{itemize}
+        	\item [$\checkmark$]  $ N \land \neg S $ 
+        \end{itemize}
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Planteamiento en Letras Proposicionales}
+    \begin{itemize}
+    	\item Charlie dice: \textquotedblleft Ni Sahara ni Nicolas estaban en el curso".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ \neg S \land \neg N $ 
+    	\end{itemize}    
+    	\item Lauren dice: \textquotedblleft Estuve en el curso con Charlie".
+    	\begin{itemize}
+    		\item [$\checkmark$] $ L \land C $ 
+    	\end{itemize}
+    	\item Emma dice: \textquotedblleft El profesor le pregunto a Bill en clase".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ E \land B $ 
+    	\end{itemize}
+    	\item Megan dice: \textquotedblleft Trabaje con Sahara en el curso".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ M \land S $ 
+    	\end{itemize}
+    	\item El profesor Laclinique dice: \textquotedblleft Vi a Archiduc en el curso" .
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ A $
+    	\end{itemize}
+       
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Planteamiento en Letras Proposicionales}
+    \begin{itemize}
+    	\item Jhon dice: \textquotedblleft Patrick, Archiduc y yo estabamos juntos en el curso".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ J \land P \land A $ 
+    	\end{itemize}    
+    	\item Megan dice: \textquotedblleft No vi a Bill ni a Charlie, pero si vio a Patrick".
+    	\begin{itemize}
+    		\item [$\checkmark$] $ M \land \neg B \land \neg C \land P $ 
+    	\end{itemize}
+    	\item Bill y Kevin dicen: \textquotedblleft Nosotros vimos a Hugo en el curso".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ B \land K \land H $ 
+    	\end{itemize}
+    	\item Don dice: \textquotedblleft No vi a ninguna chica en el curso".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ D \land \neg L \land \neg E \land \neg F \land \neg M \land \neg S $ 
+    	\end{itemize}
+    	\item Megan dice: \textquotedblleft Hable en clase con Charlie y Lauren, pero no pude con Nicolas porque no fue ".
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ M \land C \land L \land \neg N$
+    	\end{itemize}
+    	\item Gabriel dice: \textquotedblleft Yo fui al curso y vi a Bill tambien"
+    	\begin{itemize}
+    		\item [$\checkmark$]  $ G \land B $
+    	\end{itemize}
+   
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Planteamiento en Letras Proposicionales}
+    \begin{itemize}
+        \item Ahora, para encontrar la solución del problema debemos considerar todas posibles combinaciones de 9 afirmaciones verdaderas, lo que no implica que las otras 7 sean falsas. 
+        \item Por lo cual la regla será la unión \textbf{(unidas por \boldmath{$\lor$})} las combinaciones.
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Plantemaiento en Letras Proposicionales}
+Por ejemplo, supongamos que las afirmaciones verdaderas son las seis primeras, entonces tenemos: 
+    \begin{itemize}
+        \item $\textbf{(} ( A \land N ) \land ( \neg B \land \neg E ) \land (\neg E \land \neg A) \land (S \land \neg A) \land (N \land \neg S) \land (\neg S \land \neg N) \land (L \land C) \land (E \land B) \land (M \land S) \textbf{)} $
+    \end{itemize}
+Seguido de esta encontraremos, sin repetición, ${16 \choose 9}-1$ soluciones posibles que serán unidas a la anteriormente presentada con $\wedge$ para realizar la búsqueda y así dar respuesta al enigma.
+\end{frame}
+
+
+\section{Implementación Gráfica de soluciones }
+\begin{frame}[fragile]{Implementación Gráfica de soluciones}
+    Tomando en cuenta el ejemplo hecho al final de la sección de planteamiento en letras proposicionales se va a hacer una tabla en la que se junten todas las situaciones basados en las afirmaciones. 
+\end{frame}
+
+\begin{frame}[fragile]{Implementación Gráfica de soluciones}
+    Las afirmaciones que nos proporcionan son: 
+    \begin{itemize}
+        \item Archiduc y Nicolas dicen: \textquotedblleft No falté al curso\textquotedblright.
+        (A \land N )
+    \end{itemize}
+    Por lo cual se asume que ambos fueron a pesar de las afirmaciones siguientes, esto listado en una tabla:
+    
+    \begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.37in}p{0.1in}p{0.1in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.37in}}{\textbf{ Estudiante} \par \textbf{Asistencia\ \ \ \ \ \ \ \  }} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textit{A} \par } & 
+\multicolumn{1}{|p{0.1in}|}{\Centering \textit{N} \par } \\
+\hhline{---}
+%row no:2
+\multicolumn{1}{|p{1.37in}}{\Centering Asistió} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}|}{\Centering \textbf{X}} \\
+\hhline{---}
+%row no:3
+\multicolumn{1}{|p{1.37in}}{\Centering No asistió} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}|}{} \\
+\hhline{---}
+
+\end{tabular}
+ \end{table}
+\end{frame}
+
+
+\begin{frame}[fragile]{Implementación Gráfica de soluciones}
+    Luego con la segunda afirmación:
+    \begin{itemize}
+        \item Bill dice: \textquotedblleft Falté al curso con Emma\textquotedblright.
+        (\neg B \land \neg E )
+    \end{itemize}
+    Entonces la tabla sería tal que:
+    
+    \begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.37in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.37in}}{\textbf{Estudiante} \par \textbf{Asistencia\ \ \ \ \ \ \ \  }} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textit{A} \par } & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textit{N} \par } & 
+\multicolumn{1}{|p{0.1in}}{B \par } & 
+\multicolumn{1}{|p{0.1in}|}{E \par } \\
+\hhline{-----}
+%row no:2
+\multicolumn{1}{|p{1.37in}}{\Centering Asistió} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}|}{} \\
+\hhline{-----}
+%row no:3
+\multicolumn{1}{|p{1.37in}}{\Centering No asistió} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{\textbf{X}} & 
+\multicolumn{1}{|p{0.1in}|}{\textbf{X}} \\
+\hhline{-----}
+
+\end{tabular}
+ \end{table}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Implementación Gráfica de soluciones}
+    Si se continua haciendo esto (considerando que si hay una contradición entonces el estudiante faltó) hasta llegar a completar todas las afirmaciones verdaderas, se tiene una tabla tal que:
+    
+    \begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.37in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.1in}p{0.06in}p{0.06in}p{0.06in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.00in}}{\textbf{Estudiante} \par \textbf{Asistencia\ \ \ \ \ \ \ \  }} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textit{A} \par } & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textit{N} \par } & 
+\multicolumn{1}{|p{0.1in}}{B \par } & 
+\multicolumn{1}{|p{0.1in}}{E \par } & 
+\multicolumn{1}{|p{0.1in}}{S \par } & 
+\multicolumn{1}{|p{0.1in}}{L \par } & 
+\multicolumn{1}{|p{0.1in}}{C \par } & 
+\multicolumn{1}{|p{0.1in}}{M \par } & 
+\multicolumn{1}{|p{0.1in}}{D \par } & 
+\multicolumn{1}{|p{0.1in}}{J \par } & 
+\multicolumn{1}{|p{0.1in}}{F \par } & 
+\multicolumn{1}{|p{0.1in}}{G \par } & 
+\multicolumn{1}{|p{0.01in}}{H \par } & 
+\multicolumn{1}{|p{0.01in}}{K \par } & 
+\multicolumn{1}{|p{0.01in}|}{P \par } \\
+\hhline{----------------}
+%row no:2
+\multicolumn{1}{|p{1.00in}}{\Centering Asistió} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.01in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.01in}}{\Centering \textbf{X}} & 
+\multicolumn{1}{|p{0.01in}|}{\Centering \textbf{X}} \\
+\hhline{----------------}
+%row no:3
+\multicolumn{1}{|p{1.00in}}{\Centering No asistió} & 
+\multicolumn{1}{|p{0.1in}}{\textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{X} & 
+\multicolumn{1}{|p{0.1in}}{\textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{\textbf{X}} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.1in}}{} & 
+\multicolumn{1}{|p{0.01in}}{} & 
+\multicolumn{1}{|p{0.01in}}{} & 
+\multicolumn{1}{|p{0.01in}|}{} \\
+\hhline{----------------}
+
+\end{tabular}
+ \end{table}
+
+    
+\end{frame}
+
+\begin{frame}[fragile]{Implementación Gráfica de soluciones}
+    Es un resultado inesperado ya que se asumen las primeras 9 afirmaciones y se consideran que todas están desligadas, lo que se busca con el programa es que las contradicciones sean descartadas y se busque una solución en la que todas las afirmaciones sean coherentes.
+    Se concluye de este ejemplo que:
+    \begin{itemize}
+        \item La lista de alumnos faltantes fue: Archieduc, Nicolas, Bill, Emma, Sahara.
+        \item Las contradicciones son consideradas mentira. 
+    \end{itemize}
+\end{frame}
+
+
+
+\section{Busqueda de solución}
+\begin{frame}{Busqueda de Solución}
+    La busqueda de solución del problema debe hacer lo siguiente:
+    \begin{itemize}
+        \item Tener el sistema de reglas claro.
+        \item Considerar la cantidad de combinaciones.
+        \item Evaluar las combinaciones descartando las que posean contradicciones.
+        \item Retornar el listadode estudiantes que no asistieron  de la primera combinación de afirmaciones que sea coherente.
+    \end{itemize}
+\end{frame}
+
+
+
+\end{document}
