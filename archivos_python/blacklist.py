@@ -39,8 +39,7 @@ LetrasProposicionales = ["NAY", "E-B-Y", "A-E-Y", "A-SY", "S-NY", "N-S-CYY",
 
 conjunciones = ' '
 inicial = True
-
-        
+#Creación de la fórmula en notacion polaca inversa para resolver el enigma
 for p in LetrasProposicionales:
     aux1 = [x for x in LetrasProposicionales if x!= p]
     for q in aux1:
